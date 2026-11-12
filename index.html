@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="hi-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sharma PG</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#128C4A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sharma PG">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--g:#128C4A;--gd:#0b6b37;--gl:#e4f4ea;--bg:#f2f6f3;--card:#fff;--tx:#17231b;--mu:#5d6b62;--red:#c62828;--redl:#fdeaea;--am:#9a5b00;--aml:#fff4de;--bd:#dbe5de}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+header{background:var(--g);color:#fff;padding:12px 16px 10px;padding-top:calc(12px + env(safe-area-inset-top));position:sticky;top:0;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+header h1{margin:0;font-size:22px;line-height:1.2}
+header .sub{font-size:14px;opacity:.9;margin-top:2px}
+.mbar{display:flex;align-items:center;gap:8px;margin-top:10px}
+.mbar button{width:52px;height:46px;border:0;border-radius:12px;background:rgba(255,255,255,.2);color:#fff;font-size:24px;font-weight:700}
+.mbar .ml{flex:1;text-align:center;font-size:18px;font-weight:700;background:rgba(255,255,255,.12);border:0;border-radius:12px;color:#fff;height:46px}
+main{max-width:560px;margin:0 auto;padding:14px 14px 0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px}
+.card h3{margin:0 0 2px;font-size:19px}
+.mu{color:var(--mu);font-size:14px}
+.line{margin:8px 0;font-size:16px}
+.tot{font-size:26px;font-weight:800;color:var(--red);margin:6px 0 10px}
+.paidc .tot{color:var(--gd);font-size:20px;margin:4px 0 8px}
+.row{display:flex;gap:10px}
+.row>*{flex:1}
+.btn{min-height:54px;border:0;border-radius:14px;font-size:17px;font-weight:700;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;cursor:pointer;font-family:inherit;text-align:center}
+.btn:active{transform:scale(.98);filter:brightness(.95)}
+.pri{background:var(--g);color:#fff}
+.wa{background:#25D366;color:#06371b}
+.ghost{background:#fff;color:var(--tx);border:2px solid var(--bd)}
+.dan{background:var(--redl);color:var(--red);border:2px solid #f3c1c1}
+.off{background:#e8ecea;color:#98a39c}
+.full{width:100%;margin-top:10px}
+.sum{display:flex;gap:10px;margin-bottom:12px}
+.box{flex:1;border-radius:16px;padding:12px 14px}
+.box small{display:block;font-size:14px;font-weight:600}
+.box b{font-size:24px}
+.box.red{background:var(--redl);color:var(--red)}
+.box.grn{background:var(--gl);color:var(--gd)}
+.ok{background:var(--gl);color:var(--gd);border-radius:14px;padding:14px;font-weight:700;text-align:center;margin-bottom:12px}
+.warn{background:var(--aml);color:var(--am);border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:15px;font-weight:600}
+.empty{text-align:center;padding:40px 10px}
+.empty .big{font-size:56px}
+details.paidbox{margin-top:6px}
+details.paidbox>summary{list-style:none;min-height:54px;display:flex;align-items:center;font-weight:700;font-size:17px;color:var(--gd);background:var(--gl);border-radius:14px;padding:0 14px;margin-bottom:12px;cursor:pointer}
+details.paidbox>summary::-webkit-details-marker{display:none}
+label{display:block;font-weight:700;margin:12px 0 4px;font-size:15px}
+input[type=text],input[type=tel],input[type=number],input[type=search]{width:100%;height:54px;border:2px solid var(--bd);border-radius:12px;padding:0 14px;font-size:19px;font-family:inherit;background:#fff;color:var(--tx)}
+input:focus{outline:none;border-color:var(--g)}
+.res{margin-top:10px;font-weight:700;font-size:17px;color:var(--gd)}
+.res.bad{color:var(--red)}
+.tag{display:inline-block;background:var(--gl);color:var(--gd);border-radius:8px;padding:2px 8px;font-size:13px;font-weight:700;margin-right:4px}
+nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--bd);display:flex;padding-bottom:env(safe-area-inset-bottom);z-index:6}
+nav button{flex:1;border:0;background:none;padding:8px 2px 10px;font-size:13px;font-weight:700;color:var(--mu);font-family:inherit;min-height:66px}
+nav button span{display:block;font-size:24px;line-height:1.2}
+nav button.on{color:var(--g)}
+nav button.on span{transform:scale(1.12)}
+#sheet{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:20}
+#sheet.open{display:flex}
+#sheetBody{background:#fff;width:100%;max-width:560px;margin:0 auto;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
+#sheetBody h2{margin:0 0 4px;font-size:22px}
+#toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#17231b;color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;z-index:30;opacity:0;pointer-events:none;transition:opacity .2s;max-width:88vw;text-align:center}
+#toast.show{opacity:1}
+.sec{font-size:13px;font-weight:800;letter-spacing:.5px;color:var(--mu);margin:18px 2px 8px;text-transform:uppercase}
+.hint{font-size:14px;color:var(--mu);margin:6px 2px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="hTitle">Sharma PG</h1>
+  <div class="sub" id="hSub"></div>
+  <div class="mbar" id="mbar">
+    <button data-act="prevM" aria-label="Pichla mahina">‹</button>
+    <button class="ml" id="mLabel" data-act="thisM" aria-label="Is mahine par wapas jao"></button>
+    <button data-act="nextM" aria-label="Agla mahina">›</button>
+  </div>
+</header>
+<main id="view"></main>
+<nav>
+  <button data-act="tab" data-tab="home" id="n-home"><span>🏠</span>Baaki</button>
+  <button data-act="tab" data-tab="tenants" id="n-tenants"><span>👥</span>Tenants</button>
+  <button data-act="tab" data-tab="bijli" id="n-bijli"><span>⚡</span>Bijli</button>
+  <button data-act="tab" data-tab="settings" id="n-settings"><span>⚙️</span>Setting</button>
+</nav>
+<div id="sheet"><div id="sheetBody"></div></div>
+<div id="toast"></div>
+<input type="file" id="importFile" accept=".json,application/json" hidden>
+
+<script>
+(function(){
+'use strict';
+var KEY='sharmaPG.v1';
+var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var $=function(s){return document.querySelector(s);};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function inr(n){return '₹'+Number(n||0).toLocaleString('en-IN');}
+function num(v){var n=parseFloat(String(v).replace(',','.'));return isFinite(n)?n:null;}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function rk(r){return String(r==null?'':r).trim().toUpperCase();}
+function mk(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');}
+function shift(key,delta){var p=key.split('-');return mk(new Date(+p[0],+p[1]-1+delta,1));}
+function monthLabel(key){var p=key.split('-');return MONTHS[+p[1]-1]+' '+p[0];}
+function byRoom(a,b){return String(a.room).localeCompare(String(b.room),undefined,{numeric:true})||String(a.name).localeCompare(String(b.name));}
+
+/* ---------- data ---------- */
+function clean(d){
+  if(!d||typeof d!=='object')throw new Error('bad');
+  var x=(d.data&&d.tenants===undefined)?d.data:d;
+  if(!x||!Array.isArray(x.tenants))throw new Error('bad');
+  var st=x.settings||{};
+  var rate=num(st.rate);
+  var out={settings:{pgName:String(st.pgName||'Sharma PG'),ownerName:String(st.ownerName||''),rate:rate!=null&&rate>=0?rate:8},tenants:[],readings:{},payments:{}};
+  x.tenants.forEach(function(t){
+    if(!t||t.name==null)return;
+    out.tenants.push({id:String(t.id||uid()),name:String(t.name),room:String(t.room==null?'':t.room),phone:String(t.phone||''),rent:Math.max(0,num(t.rent)||0)});
+  });
+  var rd=x.readings||{};
+  Object.keys(rd).forEach(function(m){
+    var mm=rd[m];if(!mm||typeof mm!=='object')return;
+    out.readings[m]={};
+    Object.keys(mm).forEach(function(k){
+      var r=mm[k]||{},o={},p=num(r.prev),c=num(r.curr);
+      if(p!=null)o.prev=p;if(c!=null)o.curr=c;
+      out.readings[m][k]=o;
+    });
+  });
+  var pm=x.payments||{};
+  Object.keys(pm).forEach(function(m){
+    var mm=pm[m];if(!mm||typeof mm!=='object')return;
+    out.payments[m]={};
+    Object.keys(mm).forEach(function(id){if(mm[id])out.payments[m][id]=true;});
+  });
+  return out;
+}
+function load(){
+  try{var raw=localStorage.getItem(KEY);if(raw)return clean(JSON.parse(raw));}catch(e){}
+  return clean({tenants:[]});
+}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){toast('⚠️ Phone mein save nahi ho paya');}
+}
+var S=load(),M=mk(new Date()),tab='home',deferredInstall=null,editId=null;
+
+/* ---------- helpers ---------- */
+function toast(msg){var t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(function(){t.classList.remove('show');},2400);}
+function waNum(p){var d=String(p||'').replace(/\D/g,'');if(d.length>10)d=d.slice(-10);return d.length===10?'91'+d:'';}
+function roomsList(){
+  var m={},order=[];
+  S.tenants.forEach(function(t){var k=rk(t.room);if(!m[k]){m[k]={key:k,label:String(t.room).trim(),tenants:[]};order.push(k);}m[k].tenants.push(t);});
+  return order.map(function(k){return m[k];}).sort(function(a,b){return a.label.localeCompare(b.label,undefined,{numeric:true});});
+}
+function reading(month,k){
+  var cur=(S.readings[month]||{})[k]||{};
+  var pv=(S.readings[shift(month,-1)]||{})[k];
+  var prev=cur.prev!=null?cur.prev:(pv&&pv.curr!=null?pv.curr:null);
+  var curr=cur.curr!=null?cur.curr:null;
+  var units=null,bill=0,bad=false;
+  if(prev!=null&&curr!=null){
+    if(curr>=prev){units=Math.round((curr-prev)*100)/100;bill=Math.round(units*S.settings.rate);}
+    else bad=true;
+  }
+  return {prev:prev,curr:curr,units:units,bill:bill,bad:bad};
+}
+function due(t){
+  var k=rk(t.room),n=S.tenants.filter(function(x){return rk(x.room)===k;}).length||1;
+  var rd=reading(M,k),has=rd.units!=null,bijli=has?Math.round(rd.bill/n):0;
+  return {rent:t.rent,bijli:bijli,units:rd.units,total:t.rent+bijli,has:has,shared:n>1,n:n};
+}
+function isPaid(id){return !!(S.payments[M]&&S.payments[M][id]);}
+function setPaid(id,v){
+  if(!S.payments[M])S.payments[M]={};
+  if(v)S.payments[M][id]=true;else delete S.payments[M][id];
+  save();
+}
+function waLink(t,d){
+  var n=waNum(t.phone);if(!n)return '';
+  var m='Namaste '+t.name+' ji 🙏\n'+S.settings.pgName+' ki taraf se '+monthLabel(M)+' ka hisaab:\n\nRoom: '+t.room+'\nRent: '+inr(d.rent)+'\n';
+  if(d.has)m+='Bijli: '+inr(d.bijli)+' ('+d.units+' unit × '+inr(S.settings.rate)+(d.shared?', '+d.n+' logon mein baanta':'')+')\n';
+  m+='\nTotal: '+inr(d.total)+'\n\nKripya jaldi bhej dein. Dhanyavaad 🙏';
+  if(S.settings.ownerName)m+='\n- '+S.settings.ownerName;
+  return 'https://wa.me/'+n+'?text='+encodeURIComponent(m);
+}
+
+/* ---------- views ---------- */
+function breakdown(d){
+  var s='Rent '+inr(d.rent)+' + Bijli '+(d.has?inr(d.bijli)+' <span class="mu">('+d.units+' unit'+(d.shared?', '+d.n+' mein baanta':'')+')</span>':'<span class="mu">—</span>');
+  return s;
+}
+function cardUnpaid(x){
+  var t=x.t,d=x.d,link=waLink(t,d);
+  return '<div class="card"><h3>'+esc(t.name)+'</h3><div class="mu">Room '+esc(t.room)+(t.phone?' • '+esc(t.phone):' • phone nahi')+'</div>'
+   +'<div class="line">'+breakdown(d)+'</div>'
+   +(d.has?'':'<div class="warn" style="margin:6px 0">⚡ Bijli reading nahi bhari — total mein sirf rent hai</div>')
+   +'<div class="tot">'+inr(d.total)+' baaki</div>'
+   +'<div class="row"><button class="btn pri" data-act="paid" data-id="'+esc(t.id)+'">✓ Paid</button>'
+   +(link?'<a class="btn wa" href="'+link+'" target="_blank" rel="noopener">💬 WhatsApp</a>':'<button class="btn off" disabled>Phone nahi</button>')
+   +'</div></div>';
+}
+function cardPaid(x){
+  var t=x.t,d=x.d;
+  return '<div class="card paidc"><h3>'+esc(t.name)+' <span class="tag">Paid ✓</span></h3><div class="mu">Room '+esc(t.room)+'</div>'
+   +'<div class="line">'+breakdown(d)+'</div><div class="tot">'+inr(d.total)+'</div>'
+   +'<button class="btn ghost full" style="margin-top:0" data-act="unpaid" data-id="'+esc(t.id)+'">↩ Wapas baaki karo</button></div>';
+}
+function vHome(){
+  if(!S.tenants.length)return '<div class="empty"><div class="big">🏠</div><p>Abhi koi tenant nahi hai.</p><button class="btn pri" data-act="tab" data-tab="tenants">+ Pehla tenant jodo</button></div>';
+  var all=S.tenants.slice().sort(byRoom).map(function(t){return {t:t,d:due(t)};});
+  var un=all.filter(function(x){return !isPaid(x.t.id);}),pd=all.filter(function(x){return isPaid(x.t.id);});
+  var su=un.reduce(function(a,x){return a+x.d.total;},0),sp=pd.reduce(function(a,x){return a+x.d.total;},0);
+  var missing=roomsList().filter(function(r){return reading(M,r.key).units==null;}).length;
+  var h='<div class="sum"><div class="box red"><small>Baaki ('+un.length+')</small><b>'+inr(su)+'</b></div><div class="box grn"><small>Mil gaya ('+pd.length+')</small><b>'+inr(sp)+'</b></div></div>';
+  if(missing)h+='<div class="warn">⚡ '+missing+' room ki bijli reading baaki hai. Bijli tab mein bharo.</div>';
+  if(!un.length)h+='<div class="ok">🎉 Is mahine sabka rent aa gaya!</div>';
+  h+=un.map(cardUnpaid).join('');
+  if(pd.length)h+='<details class="paidbox"><summary>✅ Paid tenants ('+pd.length+')</summary>'+pd.map(cardPaid).join('')+'</details>';
+  return h;
+}
+function vTenants(){
+  var h='<button class="btn pri full" style="margin:0 0 14px" data-act="addT">+ Naya Tenant</button>';
+  if(!S.tenants.length)return h+'<div class="empty"><div class="big">👥</div><p>Tenant list khaali hai.</p></div>';
+  h+='<div class="mu" style="margin:0 2px 10px">'+S.tenants.length+' tenants • '+roomsList().length+' rooms</div>';
+  h+=S.tenants.slice().sort(byRoom).map(function(t){
+    return '<div class="card"><h3>'+esc(t.name)+'</h3><div class="mu">Room '+esc(t.room)+' • '+(t.phone?esc(t.phone):'phone nahi')+'</div>'
+     +'<div class="line"><b>'+inr(t.rent)+'</b> / mahina</div>'
+     +'<div class="row"><button class="btn ghost" data-act="editT" data-id="'+esc(t.id)+'">✏️ Badlo</button><button class="btn dan" data-act="delT" data-id="'+esc(t.id)+'">🗑 Hatao</button></div></div>';
+  }).join('');
+  return h;
+}
+function resText(r){
+  if(r.bad)return {t:'⚠️ Abhi ki reading pichli se kam hai',bad:true};
+  if(r.units!=null)return {t:r.units+' unit × '+inr(S.settings.rate)+' = '+inr(r.bill),bad:false};
+  return {t:'Dono reading bharo, bill khud ban jayega',bad:false};
+}
+function vBijli(){
+  var rs=roomsList();
+  if(!rs.length)return '<div class="empty"><div class="big">⚡</div><p>Pehle tenants jodo, phir rooms yahan dikhenge.</p><button class="btn pri" data-act="tab" data-tab="tenants">+ Tenant jodo</button></div>';
+  var h='<div class="hint" style="margin:0 2px 12px">Rate: <b>'+inr(S.settings.rate)+' per unit</b> (Setting mein badal sakte ho). Pichli reading pichle mahine se khud aa jaati hai.</div>';
+  h+=rs.map(function(r){
+    var rd=reading(M,r.key),rt=resText(rd);
+    var names=r.tenants.map(function(t){return esc(t.name);}).join(', ');
+    return '<div class="card" data-k="'+esc(r.key)+'"><h3>Room '+esc(r.label)+'</h3><div class="mu">'+names+'</div>'
+     +'<div class="row"><div><label>Pichli reading</label><input type="number" inputmode="decimal" data-k="'+esc(r.key)+'" data-f="prev" value="'+(rd.prev!=null?rd.prev:'')+'" placeholder="0"></div>'
+     +'<div><label>Abhi ki reading</label><input type="number" inputmode="decimal" data-k="'+esc(r.key)+'" data-f="curr" value="'+(rd.curr!=null?rd.curr:'')+'" placeholder="0"></div></div>'
+     +'<div class="res'+(rt.bad?' bad':'')+'">'+rt.t+'</div></div>';
+  }).join('');
+  return h;
+}
+function vSettings(){
+  var s=S.settings;
+  return '<div class="card"><label style="margin-top:0">PG ka naam</label><input type="text" data-set="pgName" value="'+esc(s.pgName)+'">'
+   +'<label>Owner ka naam</label><input type="text" data-set="ownerName" value="'+esc(s.ownerName)+'" placeholder="Apna naam likho">'
+   +'<div class="hint">Yeh naam WhatsApp message ke end mein jaata hai.</div>'
+   +'<label>Bijli rate (₹ per unit)</label><input type="number" inputmode="decimal" data-set="rate" value="'+esc(s.rate)+'"></div>'
+   +'<div class="sec">Backup</div><div class="card">'
+   +'<div class="hint" style="margin:0 0 10px">Saara data sirf is phone mein hai. Roz ya hafte mein Export karke file WhatsApp / Drive pe save kar lo.</div>'
+   +'<div class="row"><button class="btn pri" data-act="export">⬇️ Export</button><button class="btn ghost" data-act="import">⬆️ Import</button></div></div>'
+   +(deferredInstall?'<button class="btn pri full" data-act="install">📲 Phone mein App install karo</button>':'<div class="hint">App install: Chrome menu (⋮) → "Add to Home screen" / "Install app".</div>')
+   +'<div class="sec">Khatarnaak</div><button class="btn dan full" style="margin-top:0" data-act="reset">🗑 Saara data mita do</button>';
+}
+var VIEWS={home:vHome,tenants:vTenants,bijli:vBijli,settings:vSettings};
+
+function chrome(){
+  $('#hTitle').textContent=S.settings.pgName||'PG';
+  $('#hSub').textContent=S.settings.ownerName?'Malik: '+S.settings.ownerName:'Owner ka naam Setting mein daalo';
+  $('#mLabel').textContent=monthLabel(M);
+  $('#mbar').style.display=(tab==='home'||tab==='bijli')?'flex':'none';
+  ['home','tenants','bijli','settings'].forEach(function(n){$('#n-'+n).classList.toggle('on',n===tab);});
+  document.title=S.settings.pgName||'PG';
+}
+function render(){$('#view').innerHTML=VIEWS[tab]();chrome();}
+
+/* ---------- tenant form ---------- */
+function openForm(id){
+  editId=id||null;
+  var t=id?S.tenants.find(function(x){return x.id===id;}):{name:'',room:'',phone:'',rent:''};
+  if(!t)return;
+  $('#sheetBody').innerHTML='<h2>'+(id?'Tenant badlo':'Naya tenant')+'</h2>'
+   +'<label>Naam</label><input type="text" id="f_name" value="'+esc(t.name)+'" autocomplete="off">'
+   +'<label>Room number</label><input type="text" id="f_room" value="'+esc(t.room)+'" autocomplete="off" placeholder="jaise 101">'
+   +'<label>Phone (10 digit)</label><input type="tel" inputmode="numeric" id="f_phone" value="'+esc(t.phone)+'" maxlength="16" placeholder="98XXXXXXXX">'
+   +'<label>Mahine ka rent (₹)</label><input type="number" inputmode="numeric" id="f_rent" value="'+esc(t.rent)+'" placeholder="5000">'
+   +'<div class="row" style="margin-top:16px"><button class="btn ghost" data-act="closeSheet">Cancel</button><button class="btn pri" data-act="saveT">Save</button></div>';
+  $('#sheet').classList.add('open');
+  setTimeout(function(){var f=$('#f_name');if(f&&!id)f.focus();},50);
+}
+function closeSheet(){$('#sheet').classList.remove('open');editId=null;}
+function saveTenant(){
+  var name=$('#f_name').value.trim(),room=$('#f_room').value.trim(),phone=$('#f_phone').value.trim(),rent=num($('#f_rent').value);
+  if(!name){toast('Naam likho');return;}
+  if(!room){toast('Room number likho');return;}
+  if(rent==null||rent<0){toast('Rent sahi likho');return;}
+  if(phone&&!waNum(phone)){toast('Phone 10 digit ka hona chahiye');return;}
+  if(editId){
+    var t=S.tenants.find(function(x){return x.id===editId;});
+    if(t){t.name=name;t.room=room;t.phone=phone;t.rent=rent;}
+  }else S.tenants.push({id:uid(),name:name,room:room,phone:phone,rent:rent});
+  save();closeSheet();render();toast('Save ho gaya ✓');
+}
+
+/* ---------- backup ---------- */
+function doExport(){
+  try{
+    var payload={app:'sharma-pg',version:1,exportedAt:new Date().toISOString(),data:S};
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='sharma-pg-backup-'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(function(){URL.revokeObjectURL(a.href);},4000);
+    toast('Backup file download ho rahi hai');
+  }catch(e){toast('Export nahi ho paya');}
+}
+function doImport(file){
+  if(!file)return;
+  var fr=new FileReader();
+  fr.onload=function(){
+    try{
+      var d=clean(JSON.parse(fr.result));
+      if(!confirm('Import karne se abhi ka saara data badal jayega ('+d.tenants.length+' tenants aayenge). Aage badhein?'))return;
+      S=d;save();render();toast('Import ho gaya ✓');
+    }catch(e){toast('Yeh sahi backup file nahi hai');}
+  };
+  fr.onerror=function(){toast('File padh nahi paye');};
+  fr.readAsText(file);
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');
+  if(!b){if(e.target.id==='sheet')closeSheet();return;}
+  var a=b.dataset.act,id=b.dataset.id;
+  if(a==='tab'){tab=b.dataset.tab;render();window.scrollTo(0,0);}
+  else if(a==='prevM'){M=shift(M,-1);render();}
+  else if(a==='nextM'){M=shift(M,1);render();}
+  else if(a==='thisM'){M=mk(new Date());render();}
+  else if(a==='paid'){setPaid(id,true);render();toast('Paid mark ho gaya ✓');}
+  else if(a==='unpaid'){setPaid(id,false);render();toast('Wapas baaki mein daal diya');}
+  else if(a==='addT')openForm();
+  else if(a==='editT')openForm(id);
+  else if(a==='delT'){
+    var t=S.tenants.find(function(x){return x.id===id;});
+    if(t&&confirm(t.name+' ko hatana hai? Iska paid record bhi hat jayega.')){
+      S.tenants=S.tenants.filter(function(x){return x.id!==id;});
+      Object.keys(S.payments).forEach(function(m){delete S.payments[m][id];});
+      save();render();toast('Hata diya');
+    }
+  }
+  else if(a==='saveT')saveTenant();
+  else if(a==='closeSheet')closeSheet();
+  else if(a==='export')doExport();
+  else if(a==='import')$('#importFile').click();
+  else if(a==='install'&&deferredInstall){deferredInstall.prompt();deferredInstall.userChoice.finally(function(){deferredInstall=null;render();});}
+  else if(a==='reset'){
+    if(confirm('Saara data mit jayega. Pehle Export kar liya?')&&confirm('Pakka? Yeh wapas nahi aayega.')){
+      S=clean({tenants:[]});save();render();toast('Data mita diya');
+    }
+  }
+});
+$('#importFile').addEventListener('change',function(e){doImport(e.target.files[0]);e.target.value='';});
+document.addEventListener('input',function(e){
+  var el=e.target;
+  if(el.dataset&&el.dataset.f){
+    var k=el.dataset.k,f=el.dataset.f;
+    if(!S.readings[M])S.readings[M]={};
+    if(!S.readings[M][k])S.readings[M][k]={};
+    var v=el.value.trim()===''?null:num(el.value);
+    if(v==null)delete S.readings[M][k][f];else S.readings[M][k][f]=v;
+    save();
+    var rt=resText(reading(M,k)),r=el.closest('.card').querySelector('.res');
+    r.textContent=rt.t;r.classList.toggle('bad',rt.bad);
+  }else if(el.dataset&&el.dataset.set){
+    var key=el.dataset.set;
+    if(key==='rate'){var n=num(el.value);if(n!=null&&n>=0)S.settings.rate=n;}
+    else S.settings[key]=el.value;
+    save();chrome();
+  }
+});
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredInstall=e;if(tab==='settings')render();});
+window.addEventListener('appinstalled',function(){deferredInstall=null;});
+
+render();
+if('serviceWorker' in navigator&&location.protocol!=='file:'){
+  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
+}
+})();
+</script>
+</body>
+</html>
